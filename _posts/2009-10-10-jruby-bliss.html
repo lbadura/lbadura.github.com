@@ -1,0 +1,28 @@
+---
+layout: post
+title: JRuby bliss
+---
+
+I've been fiddling with <a href="http://www.jruby.org">JRuby</a> for about a month now and I have to say it's
+great. For those of you who don't know what it is - it's an implementation of
+the Ruby language written in Java. Most people are familiar only with the
+Matz's implementation in C (MRI = Matz's Ruby Interpreter also known as
+CRuby). Having Ruby available on top of the JVM is a big leverage. I was
+surprised how easy it was to incorporate Java code into Ruby code and vice
+versa.
+
+The most work I do is web development with Rails. <a href="http://www.jruby.org">JRuby</a> supports Rails since
+version 0.9. Right now it runs all Rails test cases, is <del datetime="2009-10-10T14:37:34+00:00">compatible</del> <a href="http://kenai.com/projects/jruby/pages/Ruby1_9Support">partialy compatible</a> with Ruby
+1.9 and improved performance. The existing Rails applications
+I've worked on run significantly faster on <a href="http://www.jruby.org">JRuby</a> than on CRuby (JVM rocks).
+You also get to compile your Ruby classes to Java classes or use your
+favourite Java libraries in you Ruby apps.
+
+The only downside at the moment is the Gem compatibility issues (not all Ruby
+code runs on JRuby, however can be adjusted in most cases). <a href="http://www.jruby.org">JRuby</a> doesn't
+support the use of native extensions which in consequence forces you to swap
+some gems for others or to find pure Ruby (which means <a href="http://www.jruby.org">JRuby</a> compatible)
+implementations.
+
+The bottom line is, <a href="http://www.jruby.org">JRuby</a> provides you with exciting new possibilities. I'm
+looking forward to see the next releases by the <a href="http://www.jruby.org">JRuby</a> team.

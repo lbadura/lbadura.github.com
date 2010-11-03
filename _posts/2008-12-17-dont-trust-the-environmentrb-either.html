@@ -1,0 +1,31 @@
+---
+layout: post
+title: Don't trust the environment.rb either
+---
+
+In case somebody is wondering why the heck the new rails 2.2 l18n support doesn't work, it just might be because of the screwed up default environment.rb:
+
+[sourcecode language='ruby']
+18n.load_path << Dir[File.join(RAILS_ROOT, 'my', 'locales', '*.{rb,yml}')]
+[/sourcecode]
+
+results with:
+
+[sourcecode language='ruby']
+can't convert Array into String (TypeError)
+ .../i18n-0.0.1/i18n/backend/simple.rb:176:in `extname'
+ .../i18n-0.0.1/i18n/backend/simple.rb:176:in `load_file'
+ .../i18n-0.0.1/i18n/backend/simple.rb:13:in `load_translations'
+ .../i18n-0.0.1/i18n/backend/simple.rb:13:in `each'
+ .../i18n-0.0.1/i18n/backend/simple.rb:13:in `load_translations'
+ .../i18n-0.0.1/i18n/backend/simple.rb:79:in `init_translations'
+ .../i18n-0.0.1/i18n/backend/simple.rb:94:in `lookup'
+ .../i18n-0.0.1/i18n/backend/simple.rb:33:in `translate'
+ .../i18n-0.0.1/i18n.rb:160:in `t'
+[/sourcecode]
+
+so change the '&lt;&lt;' operator to '=':
+
+[sourcecode language='ruby']
+18n.load_path = Dir[File.join(RAILS_ROOT, 'my', 'locales', '*.{rb,yml}')]
+[/sourcecode] 

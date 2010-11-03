@@ -1,0 +1,33 @@
+---
+layout: post
+title: Easy as a piece of capistrano
+---
+
+<img alt="Sunrise at capistrano beach found on Flickr" src="http://farm4.static.flickr.com/3190/3050506808_d8e47959b7.jpg?v=0" />
+
+While working on <a href="http://www.badurowie.org/moneytracker">MoneyTracker</a> in a mythical free time, I was using plain old git for updating the code base on my "production" server. I quoted the word production, because the application is nowhere production state, and I'm it's only user. Either way it gets deployed on a regular basis. I thought this would be a good enough reason to get familiar with <a href="http://www.capify.org/">Capistrano</a>. A <a href="http://github.com/guides/deploying-with-capistrano">few</a> <a href="http://www.capify.org/getting-started/from-the-beginning">documents</a> and 15 minutes later I had my <strong>deploy.rb</strong> file ready and working. The only catch I had to face was the fact that I host my app on <a href="http://www.megiteam.pl">MegiTeam</a>, where they have a custom way of restarting applications. I found a blog post about it <a href="http://blog.sebastiannowak.net/2008/06/16/deploy-na-megiteam-2/">here</a> and was ready to go. Now with a click of a button I can get my app deployed from <a href="http://github.com/lbadura/moneytracker/tree/master">GitHub's MT repository</a> to my account at MegiTeam with less hustle. Cool. For all of you who might experience problems with deployment @ MegiTeam here's my deploy.rb:
+
+[sourcecode language='ruby']
+set :application, "MoneyTracker"
+default_run_options[:pty] = true
+set :repository,  "git@github.com:lbadura/moneytracker.git"
+set :scm, "git"
+set :scm_passphrase, "my_password" #This is your custom users password
+set :user, "lbadura"
+set :deploy_to, "my_remote_path"
+ssh_options[:forward_agent] = true
+set :branch, "master"
+set :deploy_via, :remote_cache
+set :git_enable_submodules, 1
+set :use_sudo, false
+set :gateway, 'my_remote_host'
+server "my_server", :app, :web, :db, :primary =&gt; true
+namespace :deploy do
+  desc "Restart app"
+  task :restart, :role =&gt; :app do
+    run "restart-app #{ application }"
+  end
+end
+[/sourcecode]
+
+The <strong>'my_something'</strong> strings should represent your hosting environment parameters.

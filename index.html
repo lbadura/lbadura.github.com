@@ -2,4 +2,18 @@
 layout: default
 title: Rambling about software
 ---
-<p>I'll be back soon. Stay tuned.</p>
+
+<div id="home">
+  <h1>Blog Posts</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <h1>Projects</h1>
+  <ul class="posts">
+    <li><a href="http://www.bananascrum.com">Banana Scrum</a> A scrum tool simple as scrum itself. I'm working on Banana Scrum at <a href="http://www.codesprinters.com">Code Sprinters</a></li>
+    <li><a href="http://github.com/lbadura/currency-watcher">currency-watcher</a> A set of wrappers to monitor currency rates, specific to polish data sources</li>
+  </ul>
+</div>

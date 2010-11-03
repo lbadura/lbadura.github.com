@@ -1,0 +1,15 @@
+---
+layout: post
+title: Java platform gems in Rails
+---
+
+I've recently ecountered a problem with freezing java platform gems in a Rails application I'm working on. The problem was, that the Rails::GemDependency class would assume that a gem's version is the last part of it's directory name:
+
+<pre name="code" class="ruby">
+directory_name_parts = File.basename(directory_name).split('-')
+name    = directory_name_parts[0..-2].join('-')
+version = directory_name_parts.last
+result = self.new(name, :version =&gt; version)
+</pre>
+
+For java platform gems, directory names often look like e.g. <strong>RedCloth-2.2.2-universal-java</strong>. In this case we would end up with the version variable to be set to 'java', and the attempt to create a new object would result in an error. Since I really needed those JRuby compatible gems, I've prepared a small patch and filed a ticket in the Rails project. Both can be found here: <a href="https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/3356">https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/3356</a>. I hope this helps somebody with unpacking the java platform gems into the Rails' vendor directory.
