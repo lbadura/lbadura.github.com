@@ -4,16 +4,23 @@ title: Rambling about software
 ---
 
 <div id="home">
-  <h1>Blog Posts</h1>
+  {{ content }}
+
+  <h1>RECENT POSTS</h1>
   <ul class="posts">
-    {% for post in site.posts %}
+    {% for post in site.posts limit: 10 %}
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
 
-  <h1>Projects</h1>
+  <h1>PROJECTS</h1>
   <ul class="posts">
     <li><a href="https://rubygems.org/gems/currency_spy">currency-spy</a> A set of wrappers to monitor currency rates, specific to polish data sources</li>
-    <li><a href="http://www.bananascrum.com">Banana Scrum</a> A scrum tool simple as scrum itself. I'm working on Banana Scrum at <a href="http://www.codesprinters.com">Code Sprinters</a></li>
+    <li><a href="http://www.bananascrum.com">Banana Scrum</a> A scrum tool simple as scrum itself which I was working on at <a href="http://www.codesprinters.com">Code Sprinters</a></li>
+  </ul>
+
+  <h1>CONTACT</h1>
+  <ul class="posts">
+    <li><strong>E-mail / Jabber / Google Talk</strong>: lukasz at niebo dot net dot pl</li>
   </ul>
 </div>
