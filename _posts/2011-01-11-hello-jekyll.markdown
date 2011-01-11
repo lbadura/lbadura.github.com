@@ -28,7 +28,7 @@ flavor and generates static HTML files ready to be deployed on your web server.
 * _No dynamic fireworks_. Since [Jekyll](http://jekyllrb.com/) generates static pages you can't take
   advantage of all the flexibility a dynamic language can give you. On the
   bright side, you can use JavaScript to add some life to your site.
-* _No built in comments_. Well it kind of steps on the _'no dynamic fireworks'_ point, but the lack of comments is the first thing you'll notice. Unfortunately there is a good number of nice services like [Disqus](http://www.disqus.com) which will enable you have comments on your [Jekyll](http://jekyllrb.com/) generated site in no time.
+* _No built in comments_. Well it kind of steps on the _'no dynamic fireworks'_ point, but the lack of comments is the first thing you'll notice. Unfortunately there is a good number of nice services like [Disqus](http://www.disqus.com) which enables you to have comments on your [Jekyll](http://jekyllrb.com/) generated site in no time.
 
 # Workflow
 
